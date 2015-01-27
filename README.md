@@ -39,4 +39,4 @@ Include `postgresql_shm` in your node's `run_list`:
 
 ## License and Authors
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+Author:: Roy Ratcliffe (<roy@pioneeringsoftware.co.uk>)

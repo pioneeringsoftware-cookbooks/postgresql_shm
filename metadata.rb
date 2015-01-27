@@ -1,6 +1,6 @@
 name             'postgresql_shm'
-maintainer       'YOUR_NAME'
-maintainer_email 'YOUR_EMAIL'
+maintainer       'Roy Ratcliffe'
+maintainer_email 'roy@pioneeringsoftware.co.uk'
 license          'All rights reserved'
 description      'Installs/Configures postgresql_shm'
 long_description 'Installs/Configures postgresql_shm'
