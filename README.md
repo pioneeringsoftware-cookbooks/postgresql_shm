@@ -19,7 +19,10 @@ of that space. You can adjust both these ratios.
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+The cookbook supports all known platforms. Its only dependency, apart from Chef
+itself, is the `getconf` command line utility which the default recipe uses to
+access the system's page size and number of physical pages. On Linux systems,
+this binary typically comes as standard with the GNU C library.
 
 ## Attributes
 
