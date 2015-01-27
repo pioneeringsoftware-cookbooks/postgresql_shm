@@ -1,0 +1,7 @@
+name             'postgresql_shm'
+maintainer       'YOUR_NAME'
+maintainer_email 'YOUR_EMAIL'
+license          'All rights reserved'
+description      'Installs/Configures postgresql_shm'
+long_description 'Installs/Configures postgresql_shm'
+version          '0.1.0'
