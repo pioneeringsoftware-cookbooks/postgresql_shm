@@ -52,11 +52,12 @@ this binary typically comes as standard with the GNU C library.
 This is how you might typically apply this cookbook: by combining it with other
 relevant cookbook recipes to set up a PostgreSQL server in a _role_. See below.
 
-Notice the ordering of recipes. This cookbook's default recipe runs first, then
-`sysctl`'s `apply` recipe applies the new defaults. Notice also the additional
-`synchronous_commit` and `db_type` attributes for performance enhancements to
-the database server. See the [`postgresql`][postgresql] cookbook at Opscode for
-more details.
+Notice the ordering of recipes. This cookbook's default recipe runs last, even
+after `sysctl`'s `apply` recipe (apparently) applies the new defaults; going last
+allows this cookbook to override original cookbook defaults. Notice also the
+additional `synchronous_commit` and `db_type` attributes for performance
+enhancements to the database server. See the [`postgresql`][postgresql]
+cookbook at Opscode for more details.
 
 [postgresql]:https://supermarket.chef.io/cookbooks/postgresql
 
