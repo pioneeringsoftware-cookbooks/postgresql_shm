@@ -79,11 +79,11 @@ more details.
   },
   "chef_type": "role",
   "run_list": [
-    "recipe[postgresql_shm]",
     "recipe[sysctl::apply]",
     "recipe[postgresql::server]",
     "recipe[postgresql::contrib]",
-    "recipe[postgresql::config_pgtune]"
+    "recipe[postgresql::config_pgtune]",
+    "recipe[postgresql_shm]"
   ],
   "env_run_lists": {
   }
