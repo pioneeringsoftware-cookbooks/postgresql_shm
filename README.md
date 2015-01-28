@@ -49,6 +49,47 @@ this binary typically comes as standard with the GNU C library.
 
 ## Usage
 
+This is how you might typically apply this cookbook: by combining it with other
+relevant cookbook recipes to set up a PostgreSQL server in a _role_. See below.
+
+Notice the ordering of recipes. This cookbook's default recipe runs first, then
+`sysctl`'s `apply` recipe applies the new defaults. Notice also the additional
+`synchronous_commit` and `db_type` attributes for performance enhancements to
+the database server. See the [`postgresql`][postgresql] cookbook at Opscode for
+more details.
+
+[postgresql]:https://supermarket.chef.io/cookbooks/postgresql
+
+```json
+{
+  "name": "postgresql",
+  "description": "",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "postgresql": {
+      "config": {
+        "synchronous_commit": false
+      },
+      "config_pgtune": {
+        "db_type": "web"
+      }
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[postgresql_shm]",
+    "recipe[sysctl::apply]",
+    "recipe[postgresql::server]",
+    "recipe[postgresql::contrib]",
+    "recipe[postgresql::config_pgtune]"
+  ],
+  "env_run_lists": {
+  }
+}
+```
+
 ### postgresql_shm::default
 
 Include `postgresql_shm` in your node's `run_list`:
