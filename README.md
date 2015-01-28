@@ -34,10 +34,16 @@ this binary typically comes as standard with the GNU C library.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['postgresql_shm']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['postgresql']['shm']['all']</tt></td>
+    <td>Float</td>
+    <td>Defines what ratio of available physical memory should be available for shared memory</td>
+    <td><tt>0.4</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['postgresql']['shm']['buffers']</tt></td>
+    <td>Float</td>
+    <td>Defines what ratio of available shared memory should be used for PostgreSQL shared buffers</td>
+    <td><tt>0.95</tt></td>
   </tr>
 </table>
 
