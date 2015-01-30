@@ -34,14 +34,62 @@ this binary typically comes as standard with the GNU C library.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['postgresql_shm']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>['postgresql']['shm']['all']</tt></td>
+    <td>Float</td>
+    <td>Defines what ratio of available physical memory should be available for shared memory</td>
+    <td><tt>0.4</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['postgresql']['shm']['buffers']</tt></td>
+    <td>Float</td>
+    <td>Defines what ratio of available shared memory should be used for PostgreSQL shared buffers</td>
+    <td><tt>0.95</tt></td>
   </tr>
 </table>
 
 ## Usage
+
+This is how you might typically apply this cookbook: by combining it with other
+relevant cookbook recipes to set up a PostgreSQL server in a _role_. See below.
+
+Notice the ordering of recipes. This cookbook's default recipe runs last, even
+after `sysctl`'s `apply` recipe (apparently) applies the new defaults; going last
+allows this cookbook to override original cookbook defaults. Notice also the
+additional `synchronous_commit` and `db_type` attributes for performance
+enhancements to the database server. See the [`postgresql`][postgresql]
+cookbook at Opscode for more details.
+
+[postgresql]:https://supermarket.chef.io/cookbooks/postgresql
+
+```json
+{
+  "name": "postgresql",
+  "description": "",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "postgresql": {
+      "config": {
+        "synchronous_commit": false
+      },
+      "config_pgtune": {
+        "db_type": "web"
+      }
+    }
+  },
+  "override_attributes": {
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[sysctl::apply]",
+    "recipe[postgresql::server]",
+    "recipe[postgresql::contrib]",
+    "recipe[postgresql::config_pgtune]",
+    "recipe[postgresql_shm]"
+  ],
+  "env_run_lists": {
+  }
+}
+```
 
 ### postgresql_shm::default
 
