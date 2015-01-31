@@ -91,6 +91,19 @@ cookbook at Opscode for more details.
 }
 ```
 
+Note, this role requires the following cookbooks. Important to realise that the
+`postgresql_shm` does not depend on `postgresql` nor `sysctl`. It sets up the
+node default attributes but does not automatically apply the recipes. Hence you
+need to include the cookbook dependencies explicitly and apply them
+appropriately.
+
+```ruby
+# roles/postgresql.json
+cookbook 'sysctl'
+cookbook 'postgresql'
+cookbook 'postgresql_shm', git: 'https://github.com/pioneeringsoftware-cookbooks/postgresql_shm.git'
+```
+
 ### postgresql_shm::default
 
 Include `postgresql_shm` in your node's `run_list`:
